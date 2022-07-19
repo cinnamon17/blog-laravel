@@ -3,12 +3,15 @@
 namespace Tests\Feature\Models;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
+
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      *
@@ -17,10 +20,16 @@ class UserTest extends TestCase
     public function test_user_has_many_comments()
     {
 
-        $user = User::factory()
-            ->has(Comment::factory()->count(3))
-            ->create();
+        $user = User::factory()->create();
 
-        $this->assertTrue($user);
+        $this->assertInstanceOf(Collection::class, $user->comment);
+
+    }
+
+    public function test_user_has_many_posts(){
+
+        $user = User::factory()->create();
+
+        $this->assertInstanceOf(Post::class, $user->post);
     }
 }
