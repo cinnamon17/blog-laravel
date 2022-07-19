@@ -33,4 +33,23 @@ class UserTest extends TestCase
 
         $this->assertInstanceOf(Collection::class, $user->post);
     }
+    
+    public function test_users_table_has_required_columns(){
+
+        $user = User::factory()->create();
+
+        
+
+        //dd($user->attributesToArray());
+
+        $this->assertDatabaseHas('users', [
+
+            'id' => $user->getAttribute('id'),
+            'login' => $user->getAttribute('login'),
+            'password' => $user->getAttribute('password'),
+            'nickname' => $user->getAttribute('nickname'),
+            'email' => $user->getAttribute('email')
+        ]);
+
+    }
 }
