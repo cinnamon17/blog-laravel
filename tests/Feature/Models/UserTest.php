@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Models;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -13,10 +14,13 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_user_has_many_comments()
     {
-        $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $user = User::factory()
+            ->has(Comment::factory()->count(3))
+            ->create();
+
+        $this->assertTrue($user);
     }
 }
