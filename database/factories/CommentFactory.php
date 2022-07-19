@@ -19,6 +19,7 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
+            'comment' => fake()->sentence(),
             'user_id' => User::factory(),
             'post_id' => Post::factory()
 

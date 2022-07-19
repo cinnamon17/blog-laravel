@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->text('comment');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('post_id')->references('id')->on('posts');
             $table->timestamps();

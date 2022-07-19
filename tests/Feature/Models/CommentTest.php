@@ -30,4 +30,18 @@ class CommentTest extends TestCase
 
         $this->assertInstanceOf(Post::class, $comment->post);
     }
+
+    public function test_comments_table_has_required_columns(){
+
+        $comment = Comment::factory()->create();
+
+        $this->assertDatabaseHas('comments', [
+
+            'id' =>      $comment->getAttribute('id'),
+            'comment' => $comment->getAttribute('comment'),
+            'user_id' => $comment->getAttribute('user_id'),
+            'post_id' => $comment->getAttribute('post_id'),
+        ]);
+
+    }
 }
