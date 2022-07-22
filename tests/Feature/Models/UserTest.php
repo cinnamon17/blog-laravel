@@ -35,5 +35,16 @@ class UserTest extends TestCase
         $this->assertInstanceOf(Collection::class, $user->post);
     }
 
+    public function test_users_table_has_required_columns(){
+
+        $schema = Schema::getColumnListing('users');
+
+            $this->assertContains('login', $schema);
+            $this->assertContains('nickname', $schema);
+            $this->assertContains('name', $schema);
+            $this->assertContains('password', $schema);
+            $this->assertContains('email', $schema);
+
+    }
     
 }
