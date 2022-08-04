@@ -40,4 +40,5 @@ class RegistrationTest extends TestCase
 
         ] );
     }
+
 }

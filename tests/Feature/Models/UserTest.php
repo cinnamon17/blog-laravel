@@ -3,7 +3,6 @@
 namespace Tests\Feature\Models;
 
 use App\Models\User;
-use App\Models\Post;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
