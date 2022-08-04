@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
@@ -33,15 +34,12 @@ class CommentTest extends TestCase
 
     public function test_comments_table_has_required_columns(){
 
-        $comment = Comment::factory()->create();
+        $schema = Schema::getColumnListing('comments');
 
-        $this->assertDatabaseHas('comments', [
-
-            'id' =>      $comment->getAttribute('id'),
-            'comment' => $comment->getAttribute('comment'),
-            'user_id' => $comment->getAttribute('user_id'),
-            'post_id' => $comment->getAttribute('post_id'),
-        ]);
+            $this->assertContains('id', $schema);
+            $this->assertContains('comment', $schema);
+            $this->assertContains('user_id', $schema);
+            $this->assertContains('post_id', $schema);
 
     }
 }
