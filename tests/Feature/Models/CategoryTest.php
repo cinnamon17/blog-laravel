@@ -4,6 +4,7 @@ namespace Tests\Feature\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
 use App\Models\Category;
@@ -22,6 +23,15 @@ class CategoryTest extends TestCase
         $category = Category::factory()->create();
 
         $this->assertInstanceOf(Collection::class, $category->post);
+
+    }
+
+    public function test_category_has_required_columns(){
+
+        $schema = Schema::getColumnListing('categories');
+
+            $this->assertContains('id', $schema);
+            $this->assertContains('category', $schema);
 
     }
 }
